@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# /in/the/name/of/freedom/!
 # CheatSheet Generator Script
 # Usage: ./generate.sh "Topic Name"
 
