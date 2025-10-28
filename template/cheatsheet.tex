@@ -1,0 +1,132 @@
+\documentclass[8pt,a4paper,twocolumn]{extarticle}
+
+% Encoding and language
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% Page geometry and columns
+\usepackage{geometry}
+\geometry{top=10mm,bottom=12mm,left=10mm,right=10mm}
+\setlength{\columnsep}{8mm}
+\setlength{\columnseprule}{0.2pt}
+
+% Fonts and micro-typography
+\usepackage{lmodern}
+\usepackage{iftex}
+\usepackage{amssymb}
+\usepackage{pifont}
+\usepackage{tikz}
+% microtype: enable font expansion only on pdfTeX
+\ifPDFTeX
+  \usepackage[protrusion=true,expansion=true]{microtype}
+\else
+  \usepackage[protrusion=true,expansion=false]{microtype}
+\fi
+
+% Spacing and lists
+\usepackage{parskip}
+\setlength{\parskip}{2pt}
+\setlength{\parindent}{0pt}
+\usepackage{enumitem}
+\setlist{nosep,leftmargin=4mm}
+
+% Headings
+\usepackage{titlesec}
+\titlespacing*{\section}{0pt}{4pt}{2pt}
+\titlespacing*{\subsection}{0pt}{3pt}{1pt}
+\titlespacing*{\subsubsection}{0pt}{2pt}{0.5pt}
+
+% Header/footer
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{{{TOPIC}} Cheat Sheet}
+\rhead{\thepage}
+\renewcommand{\headrulewidth}{0.2pt}
+
+% Links
+\usepackage[hidelinks]{hyperref}
+
+% Code listings
+\usepackage{xcolor}
+\usepackage{listings}
+% Colors for code
+\definecolor{codekw}{RGB}{0,92,197}
+\definecolor{codecmt}{gray}{0.35}
+\definecolor{codestr}{RGB}{26,127,55}
+\lstset{
+  basicstyle=\ttfamily\scriptsize,
+  keywordstyle=\bfseries\color{codekw},
+  commentstyle=\itshape\color{codecmt},
+  stringstyle=\color{codestr},
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false,
+  upquote=true,
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=2,
+}
+% Define a thin wrapper for listings
+\lstnewenvironment{Code}{}{}
+
+\begin{document}
+
+% Title
+\begin{center}
+{\Large {{TOPIC}} Cheat Sheet}\\
+{\footnotesize Quick Reference --- v1.0 (\today)}
+\end{center}
+
+\vspace{2mm}
+
+% Intro note
+{\footnotesize Compact two-column A4 layout optimized for maximum information density.}
+
+\section{Getting Started}
+
+Add your content here. Use the \texttt{Code} environment for code examples:
+
+\begin{Code}
+// Example code block
+function example() {
+    return "Hello, World!";
+}
+\end{Code}
+
+\section{Key Concepts}
+
+\begin{itemize}
+  \item \textbf{Concept 1}: Description here
+  \item \textbf{Concept 2}: Description here
+  \item \textbf{Concept 3}: Description here
+\end{itemize}
+
+\subsection{Subsection Example}
+
+More detailed content here.
+
+\begin{Code}
+// Another code example
+def another_example():
+    print("Add your examples")
+\end{Code}
+
+\section{Quick Reference}
+
+\begin{itemize}
+  \item Command 1 -- Description
+  \item Command 2 -- Description
+  \item Command 3 -- Description
+\end{itemize}
+
+\section{Tips \& Tricks}
+
+\begin{itemize}
+  \item \textbf{Tip 1}: Your tip here
+  \item \textbf{Tip 2}: Your tip here
+\end{itemize}
+
+% Add more sections as needed
+
+\end{document}
