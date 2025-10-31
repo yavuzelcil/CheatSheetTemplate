@@ -1,31 +1,52 @@
 #!/bin/bash
-# /in/the/name/of/freedom/!
+
 # CheatSheet Generator Script
-# Usage: ./generate.sh "Topic Name"
+# Usage: ./generate.sh "Topic Name" [output_directory]
 
 set -e
 
 if [ -z "$1" ]; then
-    echo "Usage: ./generate.sh \"Topic Name\""
+    echo "Usage: ./generate.sh \"Topic Name\" [output_directory]"
     echo "Example: ./generate.sh \"Python Basics\""
+    echo "Example: ./generate.sh \"Python Basics\" ~/Documents/cheatsheets"
     exit 1
 fi
 
 TOPIC="$1"
 FOLDER_NAME=$(echo "$TOPIC" | tr '[:upper:]' '[:lower:]' | tr ' ' '-')
 
+# Determine output directory
+if [ -z "$2" ]; then
+    OUTPUT_DIR="$FOLDER_NAME"
+else
+    # Create absolute path if relative path is given
+    if [[ "$2" = /* ]]; then
+        OUTPUT_DIR="$2/$FOLDER_NAME"
+    else
+        OUTPUT_DIR="$(pwd)/$2/$FOLDER_NAME"
+    fi
+fi
+
 echo "📄 Creating cheat sheet for: $TOPIC"
-echo "📁 Folder: $FOLDER_NAME"
+echo "📁 Output directory: $OUTPUT_DIR"
+
+# Store the template directory path
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+TEMPLATE_DIR="$SCRIPT_DIR/template"
 
 # Create project directory
-mkdir -p "$FOLDER_NAME"
-cd "$FOLDER_NAME"
+mkdir -p "$OUTPUT_DIR"
+cd "$OUTPUT_DIR"
 
 # Copy template files
-cp ../template/cheatsheet.tex ./
-cp ../template/Makefile ./
-cp ../template/.latexmkrc ./
-cp ../template/.gitignore ./
+cp "$TEMPLATE_DIR/cheatsheet.tex" ./
+cp "$TEMPLATE_DIR/Makefile" ./
+if [ -f "$TEMPLATE_DIR/.latexmkrc" ]; then
+    cp "$TEMPLATE_DIR/.latexmkrc" ./
+fi
+if [ -f "$TEMPLATE_DIR/.gitignore" ]; then
+    cp "$TEMPLATE_DIR/.gitignore" ./
+fi
 
 # Replace placeholders in template
 sed -i.bak "s/{{TOPIC}}/$TOPIC/g" cheatsheet.tex

@@ -29,6 +29,15 @@ chmod +x generate.sh
 
 This will create a new folder `python-basics/` with all necessary files.
 
+**💡 Create in a custom directory:**
+```bash
+# Create in a specific directory
+./generate.sh "Python Basics" ~/Documents/cheatsheets
+
+# Create in a relative path
+./generate.sh "JavaScript ES6" ./my-cheatsheets
+```
+
 ### 3. Edit and Build
 
 ```bash
@@ -47,6 +56,10 @@ Open `cheatsheet.pdf` to see your result!
 ./generate.sh "Git Commands"
 ./generate.sh "Linear Algebra"
 ./generate.sh "Book: Clean Code"
+
+# Create in custom locations
+./generate.sh "React Hooks" ~/Documents/dev-notes
+./generate.sh "Docker Commands" /Users/username/Projects/cheatsheets
 ```
 
 ## 📂 What Gets Generated
